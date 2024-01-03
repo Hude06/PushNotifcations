@@ -8,7 +8,7 @@ document.getElementById("Notify").addEventListener("click", () => {
       const text = `HEY! Your task is now overdue.`;
       const notification = new Notification("To-do List", { body: text });
       console.log(notification)
-      document.getElementById("notify").innerHTML = notification  
+      document.getElementById("notify").innerHTML = notification.body
       notification.onclick = function() {
         alert("Notification clicked!");
       };

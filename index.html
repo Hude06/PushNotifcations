@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PushNotifications</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Notifications</title>
 </head>
 <body>
-    <h1>Simple Push Notifacation Example</h1>
 
-    <script src="Main.js"></script>
+<button onclick="showNotification()">Show Notification</button>
+
+<script>
+function showNotification() {
+  // Check if the browser supports the Notification API
+  if (!("Notification" in window)) {
+    alert("This browser does not support desktop notifications");
+  } else if (Notification.permission === "granted") {
+    // If the permission is already granted, show the notification
+    createNotification();
+  } else if (Notification.permission !== "denied") {
+    // If the permission is not denied, request permission from the user
+    Notification.requestPermission().then(permission => {
+      if (permission === "granted") {
+        createNotification();
+      }
+    });
+  }
+}
+
+function createNotification() {
+  // Create a new notification
+  var notification = new Notification("Simple Notification", {
+    body: "This is a simple notification example in JavaScript."
+  });
+
+  // You can add event listeners to handle user interactions with the notification
+  notification.onclick = function() {
+    alert("Notification clicked!");
+  };
+}
+</script>
+
 </body>
 </html>

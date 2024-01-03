@@ -1,4 +1,6 @@
+console.log("Running")
 document.getElementById("Notify").addEventListener("click", () => {
+  console.log("Clicked")
   Notification.requestPermission().then((result) => {
     if (result === "granted") {
     console.log("granred")

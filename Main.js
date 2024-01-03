@@ -1,4 +1,5 @@
-Notification.requestPermission().then((result) => {
+document.getElementById("Notify").addEventListener("click", () => {
+  Notification.requestPermission().then((result) => {
     if (result === "granted") {
     console.log("granred")
       const text = `HEY! Your task is now overdue.`;
@@ -10,4 +11,6 @@ Notification.requestPermission().then((result) => {
       };
     }
   });
+
+})
   

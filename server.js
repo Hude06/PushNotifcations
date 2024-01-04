@@ -89,7 +89,6 @@ app.get('/New', async (req, res) => {
         let price = 0
         let type = "1 bed"
         let zillowLink = null
-        console.log(newAddress)
         for (let i = 0; i < newAddress.length; i++) {
             const NEWNormalizedAddress = normalizeString(newAddress[i].address);
             let foundMatch = false;
@@ -99,15 +98,13 @@ app.get('/New', async (req, res) => {
                 zillowLink = newAddress[i].zillowLink
                 type = newAddress[i].type
                 percentage = Math.floor(Math.round(similarity(NEWNormalizedAddress,normalizedAddress)*100))
-
                 if (similarity(NEWNormalizedAddress,normalizedAddress) >= 0.95) {
                     foundMatch = true;
-                } else {
-                    console.log("Less than 95 " +  percentage +" " +NEWNormalizedAddress+"  "+normalizedAddress)
                 }
             }
             if (!foundMatch) {
                 if (zillowLink !== "") {
+                    console.log(percentage)
                     NotListed.push(new Apartment(NEWNormalizedAddress,price,type,percentage,zillowLink));
                 }
             }

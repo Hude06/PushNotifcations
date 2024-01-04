@@ -17,7 +17,8 @@ export async function run() {
       const rows = Array.from(document.querySelectorAll('#available_units tbody tr'));
       return rows.map(row => {
           const columns = row.querySelectorAll('td');
-          return {
+          return{
+              zillowLink: columns[3].querySelector('a') ? columns[3].querySelector('a').getAttribute('href') : '',
               rent: columns[1].textContent.trim(),
               address: columns[2].textContent.trim(),
               type: columns[3].textContent.trim(),
@@ -27,6 +28,5 @@ export async function run() {
   });
 
   await browser.close();
-  return(units);
-
+  return(units)
 }
